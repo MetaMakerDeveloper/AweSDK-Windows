@@ -10,7 +10,7 @@ Import the following three dynamic libraries into the project
 Extract the renderer program `AweRenderer` to a custom directory, for example, `E:\Workspace\Demo\WPF\AweRenderer`. We will start the `AweRenderer.exe` process later with code to render 3D content.
 
 ## Environment Setup
-1. Create a Setup method. The method creates a `Context` object for each interface of the SDK, initializes the SDK environment, and fills in the SDK license information. The code is as follows.
+Create a `Setup` method. The method will create a `Context` object, initialize the SDK environment, and apply the license information. 
 - Import the necessary namespaces. For example.
 
 ```csharp
