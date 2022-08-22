@@ -135,8 +135,8 @@ namespace AweSDKDemo
         private void SetupLicense(Context context)
         {
             LicenseManager licenseManager = LicenseManager.GetInstance(context);
-            licenseManager.AppKey = "bacc2c8f874936e5776ac479096a9157f41fb5fc";
-            licenseManager.AppSecret = "9dc9a9851aa3a8a329999236c194211ffa220e5e";
+            licenseManager.AppKey = "[YourAppKey]";
+            licenseManager.AppSecret = "[YourAppSecret]";
         }
 
         private void SetupResources(Context context)
