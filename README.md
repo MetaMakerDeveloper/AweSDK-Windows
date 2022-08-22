@@ -1,5 +1,5 @@
 # AweSDK for WPF
-## Build the environment
+
 Import the following three dynamic libraries into the project
 - `AweSDK.dll`
 - `AweSDK.Core.dll`
@@ -10,7 +10,7 @@ Import the following three dynamic libraries into the project
 Extract the renderer program `AweRenderer` to a custom directory, for example, `E:\Workspace\Demo\WPF\AweRenderer`. We will start the `AweRenderer.exe` process later with code to render 3D content.
 
 ## Environment Setup
-1. Create a Setup method. This method creates a context `Context` object for each interface of the SDK, initializes the SDK environment, and fills in the SDK license information. The code is as follows.
+1. Create a Setup method. The method creates a `Context` object for each interface of the SDK, initializes the SDK environment, and fills in the SDK license information. The code is as follows.
 - Import the necessary namespaces. For example.
 
 ```csharp
@@ -22,7 +22,9 @@ using AweSDK.DataBridge;
 using AweSDK.DataBridge.Sockets;
 using AweSDK.Authorization;
 ```
+
 - Create a context, start the renderer process, and setup the environment. As follows.
+
 ```csharp
 private Context Setup(string rendererPath)
 {
@@ -43,9 +45,12 @@ private Context Setup(string rendererPath)
     return context;
 }
 ```
+
 ## Start the renderer process
+
 In order to embed the renderer in the grid of the WPF main window, we first open `MainWindow.xmal`, find the default `Grid` tag, add an attribute `x:Name="MainGrid"`.
 Next, we need to declare some Win32 APIs. as follows.
+
 ```csharp
 [DllImport("user32.dll", SetLastError = true)]
 public static extern bool MoveWindow(IntPtr hwnd, int x, int y, int cx, int cy, bool repaint);
@@ -60,7 +65,9 @@ public const int GWL_STYLE = -16;
 public const long WS_CHILD = 0x40000000L;
 public const long WS_VISIBLE = 0x10000000L;
 ```
+
 Start the renderer process and embed it in the grid of the main window.
+
 ```csharp
 private void StartRenderer(Context context, string path, int port)
 {
@@ -96,6 +103,7 @@ The last step above, `ResizeRenderer()`, is to resize the renderer.
 As a simple example, here the renderer is spread over the entire main window by default. 
 Since one unit value of WPF size is `1/96 inch` and one unit value of renderer is `pixel`, some conversion is needed to control it. 
 Here we provide a convenient unit conversion helper method as follows.
+
 ```csharp
 private void ResizeRenderer()
 {
@@ -134,8 +142,10 @@ private void TransformToPixels(
     pixelY = (int)(matrix.M22 * unitY);
 }
 ```
+
 In general, when the window size changes, the renderer has to scale the window along with it. 
 So, as an example, we can listen to the `SizeChanged` event of `Window` to control the change of the renderer window. For example.
+
 ```csharp
 // Callback that listens to the SizeChanged event.
 private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -146,8 +156,11 @@ private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
     }
 }
 ```
+
 ## Setup the data bridge
+
 The SDK uses sockets to communicate data with the renderer process, so we need to setup a socket data bridge.
+
 ```csharp
 private void SetupDataBridge(Context context, int port)
 {
@@ -159,7 +172,9 @@ private void SetupDataBridge(Context context, int port)
 ```
 
 ## Setup License
+
 Developers need to apply for `AppKey` and `AppSecret` in the open platform and set them to the SDK before they can use the functions of the SDK.
+
 ```csharp
 private void SetupLicense(Context context)
 {
@@ -169,7 +184,8 @@ private void SetupLicense(Context context)
     licenseManager.AppSecret = "{YourAppSecret}";
 }
 ```
-**Note: Developers need to replace the `[YourAppKey]` and `[YourAppSecret]` in the sample code with the `AppKey` and `AppSecret` values that have been applied. **
+
+**Note: Developers need to replace the `[YourAppKey]` and `[YourAppSecret]` in the sample code with the `AppKey` and `AppSecret` values that have been applied**. 
 
 ## Setup resource paths
 The SDK relies on resources such as animations, dresses, etc., so we need to setup cache paths and resource paths so that the SDK can load resources and control caching.
@@ -247,7 +263,7 @@ private void LoadHuman(Context context)
 }
 ```
 
-**Noted that resources such as face mapping, face target, hairs, dresses, animation, etc. should be placed under the resource path in advance. **
+**Noted that resources such as face mapping, face target, hairs, dresses, animation, etc. should be placed under the resource path in advance**.
 
 Run the program and you will see a digital human in the window.
 
