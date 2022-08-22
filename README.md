@@ -1,1 +1,0 @@
-# AweSDK for Windows
