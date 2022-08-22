@@ -1,0 +1,1838 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AweSDK</name>
+    </assembly>
+    <members>
+        <member name="T:AweSDK.ResourceManager">
+            <summary>
+            The resource manager manages resource paths and cache path, 
+            and parses resource information such as animation duration.
+            </summary>
+        </member>
+        <member name="M:AweSDK.ResourceManager.AddResourceDirectory(System.String)">
+            <summary>
+            Add a resource directory.
+            </summary>
+            <param name="directoryPath">An absolute path.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="directoryPath"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.ResourceManager.SetCacheDirectory(System.String)">
+            <summary>
+            Set the cache directory.
+            </summary>
+            <param name="directoryPath">An absolute path.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="directoryPath"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.ResourceManager.GetCacheDirectory">
+            <summary>
+            Get the cache directory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AweSDK.ResourceManager.RequestAnimationDuration(System.String,System.Single)">
+            <summary>
+            Request the animation duration in seconds from the backend.
+            </summary>
+            <param name="animation">The animation to request.</param>
+            <param name="timeoutInSec">The timeout in seconds.</param>
+            <returns>The animation duration.</returns>
+        </member>
+        <member name="M:AweSDK.ResourceManager.RequestAudioDuration(System.String,System.Single)">
+            <summary>
+            Request the audio duration in seconds from the backend.
+            </summary>
+            <param name="audio">The audio file to request.</param>
+            <param name="timeoutInSec">The timeout in seconds.</param>
+            <returns></returns>
+        </member>
+        <member name="T:AweSDK.Scene.AnimaionBlendMode">
+            <summary>
+            An enumeration to indicate the animation blend mode.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimaionBlendMode.Blend">
+            <summary>
+            The animation will be blended with other animations by weight.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimaionBlendMode.Replace">
+            <summary>
+            The animation will replace other animations.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimaionBlendMode.Add">
+            <summary>
+            The animation will be added to other animations. 
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.AnimationMask">
+            <summary>
+            An enumeration to indicate the scope of the animation application.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimationMask.All">
+            <summary>
+            The animation will be applied to the whole human.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimationMask.UpperPart">
+            <summary>
+            The animation will be applied to the upper part of the human.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimationMask.LowerPart">
+            <summary>
+            The animation will be applied to the lower part of the human.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimationMask.Face">
+            <summary>
+            The animation will be applied to the face only.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimationMask.FaceExceptMouth">
+            <summary>
+            The animation will be applied to the face except the mouth.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.AnimationMask.AllExceptMouth">
+            <summary>
+            The animation will be applied to the whole human except the mouth.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.Animation">
+            <summary>
+            A description of an animation.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.#ctor(System.String)">
+            <summary>
+            Construct an Animation instance with a resource name.
+            </summary>
+            <param name="name">The animation resource name.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.GetName">
+            <summary>
+            Get the resource name of the animation.
+            </summary>
+            <returns>The resource name of the animation.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.SetWeight(System.Single)">
+            <summary>
+            Set the animation weight. The weight ranges from 0 to 1.
+            </summary>
+            <param name="weight">The weight value to set.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The weight is either less than 0 or greater than 1. 
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.GetWeight">
+            <summary>
+            Get the weight of the animation.
+            </summary>
+            <returns>The weight value.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.SetBlendMode(AweSDK.Scene.AnimaionBlendMode)">
+            <summary>
+            Set the blend mode of the animation.
+            </summary>
+            <param name="blendMode">The blend mode to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.GetBlendMode">
+            <summary>
+            Get the blend mode of the animation.
+            </summary>
+            <returns>The blend mode.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.SetMask(AweSDK.Scene.AnimationMask)">
+            <summary>
+            Set the mask of the animation.
+            </summary>
+            <param name="mask">The animation mask to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Animation.GetMask">
+            <summary>
+            Get the mask of the animation.
+            </summary>
+            <returns>The mask.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.AnimationGroup">
+            <summary>
+            An animation group that combines multiple animations.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.AnimationGroup.#ctor(System.String)">
+            <summary>
+            Construct an AnimationGroup instance with a base animation.
+            </summary>
+            <param name="animation">The base animation.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="animation"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.AnimationGroup.AddAnimation(AweSDK.Scene.Animation)">
+            <summary>
+            Add an animation to the group.
+            </summary>
+            <param name="animation">The animation to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="animation"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.AnimationGroup.AddAnimation(System.String,System.Single,AweSDK.Scene.AnimaionBlendMode,AweSDK.Scene.AnimationMask)">
+            <summary>
+            Add an animation to the group with dedicated parameters.
+            </summary>
+            <param name="animationName">The animation resource name.</param>
+            <param name="weight">The animation weight.</param>
+            <param name="blendMode">The animation blend mode.</param>
+            <param name="mask">The animation mask.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="animationName"/> is null.
+            </exception>
+        </member>
+        <member name="T:AweSDK.Scene.CameraManager">
+            <summary>
+            A manager for managing multiple cameras.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.CameraManager.GetInstance(AweSDK.Core.Context)">
+            <summary>
+            Get an instance with the provided context.
+            </summary>
+            <param name="context">The context to use.</param>
+            <returns>A CameraManager instance.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.CameraManager.ResetInstance(AweSDK.Core.Context)">
+            <summary>
+            Reset the instance. 
+            This method should generally not be called manually unless you know exactly what will happen.
+            </summary>
+            <param name="context">The context in which the instance is used.</param>
+        </member>
+        <member name="M:AweSDK.Scene.CameraManager.UseCamera(AweSDK.Scene.Camera)">
+            <summary>
+            Set the camera to be used for screen rendering.
+            </summary>
+            <param name="camera">The camera to use.</param>
+        </member>
+        <member name="M:AweSDK.Scene.CameraManager.GetCamera">
+            <summary>
+            Get the camera currently used for rendering.
+            </summary>
+            <returns>The camera currently being rendered.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.ClipConfig">
+            <summary>
+            A clip configuration for animation, audio, video and other resources.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.ClipConfig.SetStartTime(System.Single)">
+            <summary>
+            Set the start time of the clip.
+            </summary>
+            <param name="time">The time to set</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The <paramref name="time"/> is less than 0.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.ClipConfig.GetStartTime">
+            <summary>
+            Get the start time of the clip.
+            </summary>
+            <returns>The start time.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.ClipConfig.SetEndTime(System.Single)">
+            <summary>
+            Set the end time of the clip. Pass a negative value to indicate the end time of the entire clip.
+            </summary>
+            <param name="time">The end time.</param>
+        </member>
+        <member name="M:AweSDK.Scene.ClipConfig.GetEndTime">
+            <summary>
+            Get the end time of the clip.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AweSDK.Scene.DataObject">
+            <summary>
+            An abstract base class that implements the interface <see cref="T:AweSDK.Scene.IDataObject"/>. 
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.DataObject.#ctor(AweSDK.Core.Context)">
+            <summary>
+            Construct a DataObject instance with a context.
+            </summary>
+            <param name="context">The context to use.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AweSDK.Scene.DataObject.GetContext">
+            <summary>
+            Get the context.
+            </summary>
+            <returns>The context.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.DataObject.IsDestroyed">
+            <summary>
+            Whether the object is destroyed.
+            If the object is destroyed, no operation will have an effect. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AweSDK.Scene.DataObject.Destroy">
+            <summary>
+            Destroy this object in order to set it to the destroyed state. 
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.Camera">
+            <summary>
+            A Camera is a device through which the player views the world.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Camera.#ctor(AweSDK.Core.Context)">
+            <summary>
+            Construct a Camera instance with a <see cref="T:AweSDK.Core.Context"/>.
+            </summary>
+            <param name="context">The context to use.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Camera.SetDefaultFOV">
+            <summary>
+            Set a default FOV value for the camera.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Camera.SetFOV(System.Single)">
+            <summary>
+            Set FOV value for the camera. 
+            </summary>
+            <param name="fov">The fov value to set.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The fov value is less than the minimum value, a value close to 0.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Camera.GetFOV">
+            <summary>
+            Get the FOV value.
+            </summary>
+            <returns>The fov value.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Camera.SetBackgroundColor(AweSDK.Core.Values.Color)">
+            <summary>
+            Set the background color for the camera rendering.
+            </summary>
+            <param name="color">The background color to set.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The background color is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Camera.GetBackgroundColor">
+            <summary>
+            Get the background color of the camera rendering.
+            </summary>
+            <returns>The background color.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.CameraTimeSlice">
+            <summary>
+            A time slice for managing camera behavior on a <see cref="T:AweSDK.Scene.Timeline"/>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.CameraTimeSlice.#ctor(AweSDK.Scene.Camera)">
+            <summary>
+            Construct a CameraTimeSlice instance with a camera.
+            </summary>
+            <param name="camera">The camera to manage.</param>
+        </member>
+        <member name="M:AweSDK.Scene.CameraTimeSlice.SetFOV(System.Single)">
+            <summary>
+            Set the FOV value of the camera.
+            </summary>
+            <param name="fov">The FOV value.</param>
+        </member>
+        <member name="M:AweSDK.Scene.CameraTimeSlice.SetFOV(System.Single,System.Single)">
+            <summary>
+            Set the FOV value of the camera that changes over time.
+            The FOV value will change from the <paramref name="startFOV"/> to the <paramref name="endFOV"/>,
+            using the <see cref="F:AweSDK.Scene.Easing.Linear"/> curve as the time change curve.
+            </summary>
+            <param name="startFOV">The initial FOV value.</param>
+            <param name="endFOV">The final FOV value.</param>
+        </member>
+        <member name="M:AweSDK.Scene.CameraTimeSlice.SetFOV(System.Single,System.Single,AweSDK.Scene.Easing)">
+            <summary>
+            Set the FOV value of the camera that changes over time.
+            The FOV value will change from the <paramref name="startFOV"/> to the <paramref name="endFOV"/>,
+            using the <see cref="T:AweSDK.Scene.Easing"/> curve as the time change curve.
+            </summary>
+            <param name="startFOV">The initial FOV value.</param>
+            <param name="endFOV">The final FOV value.</param>
+            <param name="easing">The easing curve.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Either <paramref name="startFOV"/> or <paramref name="endFOV"/> is less than the minimum FOV value.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="easing"/> is null.
+            </exception>
+        </member>
+        <member name="T:AweSDK.Scene.Human">
+            <summary>
+            A class for creating a human.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.Create(AweSDK.Core.Context,System.String)">
+            <summary>
+            Create a Human instance by loading a JSON data.
+            </summary>
+            <param name="context">The context to use.</param>
+            <param name="jsonData">The JSON format data to load.</param>
+            <returns>A task that returns a Human instance.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.Human.BaseInfo">
+            <summary>
+            Basic information for human.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.Human.Gender">
+            <summary>
+            Enumeration type for human gender.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.#ctor(AweSDK.Core.Context,AweSDK.Scene.Human.BaseInfo)">
+            <summary>
+            Construct a Human instance with a context and a base information.
+            <seealso cref="M:AweSDK.Scene.Human.SetBaseInfo(AweSDK.Scene.Human.BaseInfo)"/>
+            </summary>
+            <param name="context">The context to use.</param>
+            <param name="baseInfo">The base information for the human.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.ExportToJson">
+            <summary>
+            Export the Human data to JSON format.
+            </summary>
+            <returns>A task that returns a JSON string.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetBaseInfo(AweSDK.Scene.Human.BaseInfo)">
+            <summary>
+            Set the base information for the human. 
+            A base information includes the required <see cref="T:AweSDK.Scene.Human.Gender"/>, 
+            <c>FaceMapping</c>, and <c>FaceTarget</c>, and optionally, <c>BodyMapping</c>.
+            <c>FaceMapping</c>, <c>FaceTarget</c> and <c>BodyMapping</c> 
+            are all set to the relative file paths (relative to the configured resource or cache paths).
+            The <c>BodyMapping</c> is only used when the specified body mapping is needed.
+            <para>
+            You may also save the processed head skin mapping file and body skin mapping file to the same directory as the <c>FaceMapping</c> file.
+            Their filenames are formed by taking <c>FaceMapping</c>'s filename and inserting the corresponding tags.
+            When both files exist at the same time, they will be automatically loaded.<br/>
+            For example, <br/>
+            if the <c>FaceMapping</c> is named:
+            <br/><c>mapping/human101.jpg</c><br/>
+            then the head skin mapping should be named (with the <c>_head_skin</c> tag inserted): 
+            <br/><c>mapping/human101_head_skin.jpg</c><br/>
+            and the body skin mapping should be named (with the <c>_body_skin</c> tag inserted):
+            <br/><c>mapping/human101_body_skin.jpg</c><br/>
+            accordingly.
+            </para>
+            </summary>
+            <param name="baseInfo">The base information for the human.</param>
+            <exception cref="T:System.ArgumentException">
+            The <c>FaceTexture</c> or <c>FaceTarget</c> of <paramref name="baseInfo"/> is null or empty.
+            Or the <c>Gender</c> value of the <paramref name="baseInfo"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetBaseInfo">
+            <summary>
+            Get the human's base information.
+            </summary>
+            <returns>The base information of human.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.WearUnderwear(System.String[])">
+            <summary>
+            Wear the underwear. Pass an empty array or <c>null</c> to take off.
+            <para>
+            Note that if there is an underwear of the same type in the list, 
+            the later underwear will replace the earlier one.
+            </para>
+            </summary>
+            <param name="underwear">The underwear to wear.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetUnderwear">
+            <summary>
+            Get the weared underwear.
+            </summary>
+            <returns>The weared underwear.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.WearHair(System.String)">
+            <summary>
+            Wear the hair. Pass an empty string or <c>null</c> to take off.
+            </summary>
+            <param name="hair">The hair to wear.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetHair">
+            <summary>
+            Get the weared hair.
+            </summary>
+            <returns>
+            The weared hair. 
+            Returns an empty string if no hair is worn.
+            </returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.WearShoes(System.String)">
+            <summary>
+            Wear the shoes. Pass an empty string or <c>null</c> to take off.
+            </summary>
+            <param name="shoes">The shoes to wear.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetShoes">
+            <summary>
+            Get the weared shoes.
+            </summary>
+            <returns>
+            The weared shoes. 
+            Returns an empty string if no shoes are worn.
+            </returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.WearGlasses(System.String)">
+            <summary>
+            Wear the glasses. Pass an empty string or <c>null</c> to take off.
+            </summary>
+            <param name="glasses">The glasses to wear.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetGlasses">
+            <summary>
+            Get the weared glasses.
+            </summary>
+            <returns>
+            The weared glasses. 
+            Returns an empty string if no glasses are worn.
+            </returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.WearFacialHair(System.String)">
+            <summary>
+            Wear the facial hair. Pass an empty string or <c>null</c> to take off.
+            </summary>
+            <param name="facialHair">The facial hair to wear.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetFacialHair">
+            <summary>
+            Get the weared facial hair.
+            </summary>
+            <returns>
+            The weared facial hair. 
+            Returns an empty string if no facial hair is worn.
+            </returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.WearOutfits(System.String[])">
+            <summary>
+            Wear the outfits. Pass an empty array or <c>null</c> to take off.
+            <para>
+            Note that if there is an outfit of the same type in the list, 
+            the later outfit will replace the earlier one.
+            </para>
+            </summary>
+            <param name="outfits">The outfits to wear.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetOutfits">
+            <summary>
+            Get weared outfits.
+            </summary>
+            <returns>The weared outfits.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:AweSDK.Scene.Human.SetTarget(System.String,System.Single)" -->
+        <member name="M:AweSDK.Scene.Human.UnsetTarget(System.String)">
+            <summary>
+            Unset a target.
+            </summary>
+            <param name="targetId">The target id to unset.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="targetId"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetTarget(System.String)">
+            <summary>
+            Get target weight.
+            </summary>
+            <param name="targetId">The target id to get.</param>
+            <returns>The weight of the given target id.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="targetId"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Human.ResetAllTargets">
+            <summary>
+            Set all target weights to <c>0</c>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.ResetSkin">
+            <summary>
+            Reset all skin processing.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetSkinColor(AweSDK.Core.Values.Color)">
+            <summary>
+            Set the skin color. Pass <c>null</c> to reset.
+            </summary>
+            <param name="color">The color of the skin.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetSkinColor">
+            <summary>
+            Get the skin color.
+            </summary>
+            <returns>The processed skin color. Return <c>null</c> if no skin color has been set.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetSkinFineness(System.Single)">
+            <summary>
+            Set skin fineness.
+            </summary>
+            <param name="fineness">
+            A value in the range <c>[0, 1]</c> to indicate the fineness of the skin processing. 
+            <c>0</c> means no processing, while <c>1</c> means maximum processing.
+            </param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetSkinFineness">
+            <summary>
+            Get the processed skin fineness.
+            </summary>
+            <returns>The processed skin fineness.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetSkinWhiteness(System.Single)">
+            <summary>
+            Set skin whiteness.
+            </summary>
+            <param name="whiteness">
+            A value in the range [0, 1] to indicate the whiteness of the skin processing. 
+            <c>0</c> means no processing, while <c>1</c> means the whitest. 
+            </param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetSkinWhiteness">
+            <summary>
+            Get the processed skin whiteness.
+            </summary>
+            <returns>The processed skin whiteness.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.RemoveSkinLight(System.Boolean)">
+            <summary>
+            Set whether to remove the light information from the skin.
+            </summary>
+            <param name="remove">The remove flag.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.IsSkinLightRemoved">
+            <summary>
+            Whether the light information from the skin is removed.
+            </summary>
+            <returns>Return <c>True</c> if the light information is removed, otherwise <c>False</c>.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.ResetEyeOffset">
+            <summary>
+            Reset the eye offset.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetEyeOffset(AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the eye offset. Pass <c>null</c> to reset.
+            </summary>
+            <param name="offset">The offset to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetEyeOffset">
+            <summary>
+            Get the offset of the eye.
+            </summary>
+            <returns>The offset of the eye.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.ResetEyeScale">
+            <summary>
+            Reset the eye scale.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetEyeScale(System.Single)">
+            <summary>
+            Scale the eye. The default scale value is <c>1</c>.
+            </summary>
+            <param name="scale">The value to scale.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="scale"/> value cannot be less than <c>0</c>.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Human.GetEyeScale">
+            <summary>
+            Get the eye scale value.
+            </summary>
+            <returns>The eye scale value.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Human.SetEyeColor(AweSDK.Core.Values.Color)">
+            <summary>
+            Set the eye color. Pass <c>null</c> to reset.
+            </summary>
+            <param name="color">The color to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.ResetEyeColor">
+            <summary>
+            Reset the eye color.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.PlayAnimation(System.String,System.Boolean)">
+            <summary>
+            Play an animation.
+            </summary>
+            <param name="animation">The animation to play.</param>
+            <param name="loop">Whether to loop.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="animation"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Human.PlayAnimations(System.String[],System.Boolean)">
+            <summary>
+            Play the animations one by one.
+            </summary>
+            <param name="animations">The animations to play.</param>
+            <param name="loop">Whether to loop.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="animations"/> are null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Human.OnAnimationStart(AweSDK.Scene.Human.AnimationCallback)">
+            <summary>
+            Set the callback for the start of animation playback. 
+            </summary>
+            <param name="callback">The callback to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.OnAnimationEnd(AweSDK.Scene.Human.AnimationCallback)">
+            <summary>
+            Set the callback for the end of animation playback. 
+            </summary>
+            <param name="callback">The callback to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.StopAnimation">
+            <summary>
+            Stop the animation.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.Speak(System.String,System.Boolean)">
+            <summary>
+            Drive the Human to speak by specifying the resource id.
+            In order to speak properly, at least three resource files must be provided. 
+            Using the resource id as a prefix, these three resources should be saved as 
+            <c>[id].wav</c>,
+            <c>[id]_expression.anim</c>,
+            <c>[id]_teeth.anim</c>.
+            </summary>
+            <param name="resourceId">The resource id to provide.</param>
+            <param name="loop">Whether to loop.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.StopSpeaking">
+            <summary>
+            Stop speaking.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Human.OnSpeakingStart(AweSDK.Scene.Human.SpeakingCallback)">
+            <summary>
+            Set the callback to start speaking. 
+            </summary>
+            <param name="callback">The callback to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Human.OnSpeakingEnd(AweSDK.Scene.Human.SpeakingCallback)">
+            <summary>
+            Set the callback to end speaking.
+            </summary>
+            <param name="callback">The callback to set.</param>
+        </member>
+        <member name="T:AweSDK.Scene.Item">
+            <summary>
+            A class that describes the items of a scene.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Item.#ctor(AweSDK.Core.Context,System.String)">
+            <summary>
+            Construct an Item instance with a context and an asset.
+            </summary>
+            <param name="context">The context to use.</param>
+            <param name="assetName">The asset name.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Item.GetAssetName">
+            <summary>
+            Get the asset name of the item.
+            </summary>
+            <returns>The asset name.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.ItemTimeSlice">
+            <summary>
+            A time slice for managing item behavior on a <see cref="T:AweSDK.Scene.Timeline"/>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.ItemTimeSlice.#ctor(AweSDK.Scene.Item)">
+            <summary>
+            Construct an ItemTimeSlice instance with an item.
+            </summary>
+            <param name="item">The item to manage.</param>
+        </member>
+        <member name="T:AweSDK.Scene.HumanTimeSlice">
+            <summary>
+            A time slice for managing human behavior on a <see cref="T:AweSDK.Scene.Timeline"/>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.HumanTimeSlice.#ctor(AweSDK.Scene.Human)">
+            <summary>
+            Construct a HumanTimeSlice instance with a human.
+            </summary>
+            <param name="human">The human to manage.</param>
+        </member>
+        <member name="M:AweSDK.Scene.HumanTimeSlice.SetTTS(AweSDK.Scene.TTSData)">
+            <summary>
+            Set the tts data.
+            <para>
+            [Discussion]:<br></br><br></br>
+            When using <see cref="F:AweSDK.Scene.TTSData.ID"/> value as <b>[id]</b>, 
+            <br></br> you should save the audio file as <b>[id].wav</b>,
+            <br></br> the mouth animation file as <b>[id]_teeth.anim</b>,
+            <br></br> the face animation file as <b>[id]_expression.anim</b>,
+            <br></br> and optionally the audio json information as <b>[id]_audio_info.json</b>.
+            <br></br><br></br>
+            If you want to control the playback of the sound yourself, 
+            you can specify <see cref="F:AweSDK.Scene.TTSData.PlayAudio"/> as <c>False</c>, otherwise <c>True</c>.<br></br>
+            If you want to control the mouth animation yourself,
+            you can specify <see cref="F:AweSDK.Scene.TTSData.PlayMouthAnimation"/> as <c>False</c>, otherwise <c>True</c>.<br></br>
+            If you want to control the face animation yourself,
+            you can specify <see cref="F:AweSDK.Scene.TTSData.PlayFaceAnimation"/> as <c>False</c>, otherwise <c>True</c>.<br></br>
+            </para>
+            </summary>
+            <param name="ttsData">The tts data to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.HumanTimeSlice.RemoveTTS">
+            <summary>
+            Remove the tts.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.HumanTimeSlice.SetAnimation(System.String,AweSDK.Scene.ClipConfig)">
+            <summary>
+            Set the animation.
+            </summary>
+            <param name="animation">The animation to set.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="animation"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.HumanTimeSlice.RemoveAnimation">
+            <summary>
+            Remove the animation.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.IDataObject">
+            <summary>
+            An interface describing the construction of an object with data.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.GetID">
+            <summary>
+            Get the identifier of this object.
+            </summary>
+            <returns>The id string.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.Destroy">
+            <summary>
+            Destroy the object.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.IsDestroyed">
+            <summary>
+            Whether the object is destroyed.
+            </summary>
+            <returns><c>True</c> if is destroyed, otherwise, <c>False</c>.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.GetContext">
+            <summary>
+            Get the context.
+            </summary>
+            <returns>The current context.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.CreateUpdateData(System.String)">
+            <summary>
+            Create a copy of data for updating.
+            </summary>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.CreateDestroyData(System.String)">
+            <summary>
+            Create a copy of data for destruction.
+            </summary>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.SetUpdatePriority(System.Int32)">
+            <summary>
+            Set the update priority.
+            </summary>
+            <param name="priority">The priority.</param>
+        </member>
+        <member name="M:AweSDK.Scene.IDataObject.GetUpdatePriority">
+            <summary>
+            Get the update priority.
+            </summary>
+            <returns>The update priority.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.ITransaction">
+            <summary>
+            An interface describing the construction of a transaction.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:AweSDK.Scene.Easing" -->
+        <member name="M:AweSDK.Scene.Easing.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Construct an Easing instance with two control points <c>P1(x1, y1)</c> and <c>P2(x2, y2)</c>.
+            </summary>
+            <param name="x1">The x component of the point P1.</param>
+            <param name="y1">The y component of the point P1.</param>
+            <param name="x2">The x component of the point P2.</param>
+            <param name="y2">The y component of the point P2.</param>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.Linear">
+            <summary>
+            A linear curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInSine">
+            <summary>
+            An eased-in sine curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutSine">
+            <summary>
+            An eased-out sine curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutSine">
+            <summary>
+            An eased-in-out sine curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInQuad">
+            <summary>
+            An eased-in quadratic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutQuad">
+            <summary>
+            An eased-out quadratic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutQuad">
+            <summary>
+            An eased-in-out quadratic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInCubic">
+            <summary>
+            An eased-in cubic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutCubic">
+            <summary>
+            An eased-out cubic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutCubic">
+            <summary>
+            An eased-in-out cubic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInQuart">
+            <summary>
+            An eased-in quartic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutQuart">
+            <summary>
+            An eased-out quartic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutQuart">
+            <summary>
+            An eased-in-out quartic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInQuint">
+            <summary>
+            An eased-in quintic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutQuint">
+            <summary>
+            An eased-out quintic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutQuint">
+            <summary>
+            An eased-in-out quintic curve.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInExpo">
+            <summary>
+            An eased-in exponential curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutExpo">
+            <summary>
+            An eased-out exponential curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutExpo">
+            <summary>
+            An eased-in-out exponential curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInCirc">
+            <summary>
+            An eased-in circular curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutCirc">
+            <summary>
+            An eased-out circular curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutCirc">
+            <summary>
+            An eased-in-out circular curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInBack">
+            <summary>
+            An eased-in back curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseOutBack">
+            <summary>
+            An eased-out back curve. 
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.Easing.EaseInOutBack">
+            <summary>
+            An eased-in-out back curve. 
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.Scene">
+            <summary>
+            A container to hold <see cref="T:AweSDK.Scene.Element"/>s and a <see cref="T:AweSDK.Scene.Timeline"/>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.#ctor(AweSDK.Core.Context)">
+            <summary>
+            Construct a Scene instance with a context.
+            </summary>
+            <param name="context">The context to use.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.GetTimeline">
+            <summary>
+            Get the timeline of this <see cref="T:AweSDK.Scene.Scene"/>.
+            </summary>
+            <returns>The timeline.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.AddElement(AweSDK.Scene.Element)">
+            <summary>
+            Add an <see cref="T:AweSDK.Scene.Element"/> to the scene.
+            </summary>
+            <param name="element">The element to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="element"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            The element is destroyed.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.RemoveElement(AweSDK.Scene.Element)">
+            <summary>
+            Remove an <see cref="T:AweSDK.Scene.Element"/> from the scene.
+            </summary>
+            <param name="element">The element to remove.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="element"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.RemoveAllElements">
+            <summary>
+            Remove all elements from the scene.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.Reset">
+            <summary>
+            Reset the scene. This operation will remove all elements and reset the timeline.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.Destroy">
+            <summary>
+            Destroy this scene in order to set it to the destroyed state. 
+            This operation will destroy everything in the scene.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.UseCamera(AweSDK.Scene.Camera)">
+            <summary>
+            Specify a camera to render.
+            </summary>
+            <param name="camera">The camera to use.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Scene.GetCamera">
+            <summary>
+            Get the currently rendered camera. 
+            </summary>
+            <returns>The currently rendered camera. </returns>
+        </member>
+        <member name="T:AweSDK.Scene.SceneManager">
+            <summary>
+            A manager for scene managing.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.GetInstance(AweSDK.Core.Context)">
+            <summary>
+            Get a SceneManager instance with the provided context.
+            </summary>
+            <param name="context">The context to use.</param>
+            <returns>An SceneManager instance.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.ResetInstance(AweSDK.Core.Context)">
+            <summary>
+            Reset the instance. 
+            This method should generally not be called manually unless you know exactly what will happen.
+            </summary>
+            <param name="context">The context used by the instance.</param>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.GetContext">
+            <summary>
+            Get the context.
+            </summary>
+            <returns>The context.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.SaveData">
+            <summary>
+            Save all scene data managed by SceneManager.
+            </summary>
+            <returns>A copy of the data in JSON format.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.LoadData(System.String)">
+            <summary>
+            Load a copy of the saved data.
+            </summary>
+            <param name="data">The data to load.</param>
+            <returns>The names of all available scenes.</returns>
+            <exception cref="T:System.IO.InvalidDataException">
+            The <paramref name="data"/> is not valid.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.Reset">
+            <summary>
+            Destroy all managed stuff. 
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.GetCurrentScene">
+            <summary>
+            Get the current scene.
+            </summary>
+            <returns>The current scene.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.SceneManager.SwitchScene(System.String)">
+            <summary>
+            Switch to the scene with the specified name. 
+            If the scene does not exist, it will create a new scene with this name.
+            </summary>
+            <param name="sceneName">The scene name to switch.</param>
+            <returns>The current scene.</returns>
+            <exception cref="T:System.ArgumentException">
+            The <paramref name="sceneName"/> is null or empty.
+            </exception>
+        </member>
+        <member name="T:AweSDK.Scene.Stage">
+            <summary>
+            A class that describes the scene stage.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Stage.#ctor(AweSDK.Core.Context,System.String)">
+            <summary>
+            Construct a Stage instance with a context and an asset.
+            </summary>
+            <param name="context">The context to use.</param>
+            <param name="assetName">The asset name.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Stage.GetAssetName">
+            <summary>
+            Get the asset name of the item.
+            </summary>
+            <returns>The asset name.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.StageTimeSlice">
+            <summary>
+            A time slice for managing scene stage behavior on a <see cref="T:AweSDK.Scene.Timeline"/>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.StageTimeSlice.#ctor(AweSDK.Scene.Stage)">
+            <summary>
+            Construct an StageTimeSlice instance with a stage.
+            </summary>
+            <param name="stage">The stage to manage.</param>
+        </member>
+        <member name="T:AweSDK.Scene.Timeline">
+            <summary>
+            A class for creating a timeline.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.#ctor(AweSDK.Core.Context)">
+            <summary>
+            Construct a Timeline instance with a context.
+            </summary>
+            <param name="context">The context to use.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.GetAllTimeSlices">
+            <summary>
+            Get all the time slices.
+            </summary>
+            <returns>All the time slices.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.FindTimeSlicesByElement(AweSDK.Scene.Element)">
+            <summary>
+            Find all associated time slices by element.
+            </summary>
+            <param name="element">The element to search.</param>
+            <returns>All the time slices with the associated element.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.FindTimeSlicesByTag(System.String)">
+            <summary>
+            Find all associated time slices by tag.
+            </summary>
+            <param name="tag">The tag to search.</param>
+            <returns>All the time slices with the given tag.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.FindTimeSlicesAtTime(System.Single)">
+            <summary>
+            Find all time slices at a given time in seconds.
+            </summary>
+            <param name="time">The time to search.</param>
+            <returns>All the time slices at the given time.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.CloneTimeSlicesAtTime(System.Single)">
+            <summary>
+            Clone all time slices at a given time in seconds.
+            </summary>
+            <param name="time">The time to search.</param>
+            <returns>All cloned time slices at the given time.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.SetSyncTimeInterval(System.Single)">
+            <summary>
+            Set the interval for time synchronization. 
+            The shorter the synchronization interval, the higher the time accuracy, 
+            but also the lower the efficiency.
+            </summary>
+            <param name="interval">The time interval for synchronization.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Interrupt(AweSDK.Scene.TimeSlice[])">
+            <summary>
+            Interrupt the timeline with the given time slices.
+            </summary>
+            <param name="slices">The time slices to interrupt.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="slices"/> are null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Restore">
+            <summary>
+            Restore the timeline from the interruption. 
+            This method is usually called automatically at the end of an interrupt, 
+            and in most cases the developer does not need to call it manually.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.SetEnabled(System.Boolean)">
+            <summary>
+            Set the timeline enabled or not.
+            </summary>
+            <param name="enabled">The enabled flag to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Destroy">
+            <summary>
+            Destroy this timeline in order to set it to the destroyed state. 
+            This operation will also destroy all time slices.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.GetDuration">
+            <summary>
+            Get the duration of the timeline in seconds.
+            </summary>
+            <returns>The duration.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.BeforeSeekingTime(AweSDK.Scene.Timeline.SeekTimeCallback)">
+            <summary>
+            Set callback for the timeline before each seeking time.
+            </summary>
+            <param name="callback">The callback function.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.AfterSeekingTime(AweSDK.Scene.Timeline.SeekTimeCallback)">
+            <summary>
+            Set callback for the timeline after each seeking time.
+            </summary>
+            <param name="callback">The callback function.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.SeekTime(System.Single)">
+            <summary>
+            Set play position in seconds.
+            </summary>
+            <param name="time">The time position.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.GetSeekTime">
+            <summary>
+            Get the play position in seconds.
+            </summary>
+            <returns>The play time position.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Pause">
+            <summary>
+            Pause the timeline playing.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Resume">
+            <summary>
+            Resume the timeline playing.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Play">
+            <summary>
+            Play the timeline.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Stop">
+            <summary>
+            Stop the timeline playing. 
+            The timeline playing position will be set to <c>0</c> and stopped.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.SetLoop(System.Int32)">
+            <summary>
+            Set loop count of the playing. Pass negative value or <see cref="F:System.Int32.MaxValue"/> to enable infinite loop.
+            </summary>
+            <param name="loopCount">The loop count to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.AddTimeSlice(AweSDK.Scene.TimeSlice)">
+            <summary>
+            Add a time slice.
+            </summary>
+            <param name="slice">The time slice to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The time slice is null.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            The time slice is destroyed.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.RemoveTimeSlice(AweSDK.Scene.TimeSlice)">
+            <summary>
+            Remove the time slice.
+            </summary>
+            <param name="slice">The time slice to remove.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The time slice is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.RemoveTimeSliceById(System.String)">
+            <summary>
+            Remove the time slice by id.
+            </summary>
+            <param name="sliceId">The time slice id to remove.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="sliceId"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.RemoveAllTimeSlices">
+            <summary>
+            Remove all time slices from the timeline. 
+            This operation will not destroy any time slice. 
+            Use <c>DestroyAllTimeSlices</c> instead if you prefer to destroy them.
+            <seealso cref="M:AweSDK.Scene.Timeline.DestroyAllTimeSlices"/>
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.DestroyAllTimeSlices">
+            <summary>
+            Destroy all time slices.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Timeline.Reset">
+            <summary>
+            Reset the timeline.
+            This operation will <b>REMOVE</b> (not DESTROY) all time slices.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.TimeSliceAlignType">
+            <summary>
+            An enumeration to describe how to align two time slices.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.TimeSliceAlignType.StartToStart">
+            <summary>
+            Align start time to start time.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.TimeSliceAlignType.StartToEnd">
+            <summary>
+            Align start time to end time.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.TimeSliceAlignType.EndToStart">
+            <summary>
+            Align end time to start time.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.TimeSliceAlignType.EndToEnd">
+            <summary>
+            Align end time to end time.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.TimeSlice">
+            <summary>
+            An abstract base class of a time slice. 
+            A time slice is a description of the behavior of an <see cref="T:AweSDK.Scene.Element"/> 
+            over a range of time on the <see cref="T:AweSDK.Scene.Timeline"/>.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.AlignTo(AweSDK.Scene.TimeSlice,System.Single,AweSDK.Scene.TimeSliceAlignType)">
+            <summary>
+            Align time value to another <see cref="T:AweSDK.Scene.TimeSlice"/>.
+            </summary>
+            <param name="slice">The time slice to be aligned.</param>
+            <param name="timeOffset">The aligned time offset in seconds.</param>
+            <param name="alignType">The aligned type.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="slice"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.IsAligning">
+            <summary>
+            Whether is aligning to other <see cref="T:AweSDK.Scene.TimeSlice"/>.
+            </summary>
+            <returns><c>True</c> if is aligning to other TimeSlice, otherwise <c>False</c>.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetAligning">
+            <summary>
+            Get the TimeSlice that is aligning.
+            </summary>
+            <returns>The TimeSlice that is aligning.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetAligningRoot">
+            <summary>
+            Get the root <see cref="T:AweSDK.Scene.TimeSlice"/> that is aligning. 
+            The root <see cref="T:AweSDK.Scene.TimeSlice"/> is the first one in the alignment chain.
+            </summary>
+            <returns>The root time slice.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.Unalign">
+            <summary>
+            Unalign the time value.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetAligned(System.Boolean)">
+            <summary>
+            Get all time slices aligned to this. 
+            Set recursive value to <c>True</c> to get all the time slices of the whole alignment chain.
+            </summary>
+            <param name="recursive">Whether recursion is required.</param>
+            <returns>All the time slices aligned to this.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.ClearAligned(System.Boolean)">
+            <summary>
+            Clear all time slices aligned to this. 
+            Set recursive value to <c>True</c> to clear all the time slices of the whole alignment chain.
+            </summary>
+            <param name="recursive">Whether recursion is required.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.ClearTags">
+            <summary>
+            Clear all tags.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.RemoveTag(System.String)">
+            <summary>
+            Remove a tag.
+            </summary>
+            <param name="tag">The tag to be removed.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.HasTag(System.String)">
+            <summary>
+            Whether the time slice contains a tag.
+            </summary>
+            <param name="tag">The tag to be checked.</param>
+            <returns><c>True</c> if the time slice contains this tag, otherwise, <c>False</c></returns>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="tag"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.AddTag(System.String)">
+            <summary>
+            Add a tag to the time slice.
+            </summary>
+            <param name="tag">The tag to be added.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="tag"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetAllTags">
+            <summary>
+            Get all tags owned by this time slice.
+            </summary>
+            <returns>All tags owned by this time slice.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.Destroy">
+            <summary>
+            Destroy this time slice in order to set it to the destroyed state.
+            This operation will also remove itself from the timeline.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.OnActive(AweSDK.Scene.TimeSlice.ActiveCallback)">
+            <summary>
+            Set the callback to be called when the time slice changes from an inactive to an active state.<br></br>
+            The callback function will be passed in the relative time offset value (in seconds) at the time of entering the active state.
+            </summary>
+            <param name="callback">The callback function to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.OnInactive(AweSDK.Scene.TimeSlice.InactiveCallback)">
+            <summary>
+            Set the callback to be called when the time slice changes from an active to an inactive state.
+            </summary>
+            <param name="callback">The callback function to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.IsActive">
+            <summary>
+            Whether the time slice is in active state.
+            </summary>
+            <returns>Return <c>True</c> if the time slice is active, otherwise <c>False</c>.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetElement">
+            <summary>
+            Get the <see cref="T:AweSDK.Scene.Element"/> corresponding to this time slice.
+            </summary>
+            <returns>The <see cref="T:AweSDK.Scene.Element"/> corresponding to this time slice.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetStartTime(System.Single)">
+            <summary>
+            Set the start time in seconds.
+            </summary>
+            <param name="time">The start time.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="time"/> is negative.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            This TimeSlice is being bound to another one。
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetStartTime">
+            <summary>
+            Get the start time in seconds.
+            </summary>
+            <returns>The start time in seconds.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetDuration(System.Single)">
+            <summary>
+            Set the duration in seconds.
+            </summary>
+            <param name="duration">The duration.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="duration"/> is negative.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetDuration">
+            <summary>
+            Get the duration in seconds.
+            </summary>
+            <returns>The duration in seconds.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetEndTime(System.Single)">
+            <summary>
+            Set the end time in seconds.
+            </summary>
+            <param name="endTime">The end time.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The end time is less than the start time.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetEndTime">
+            <summary>
+            Get the end time in seconds.
+            </summary>
+            <returns>The end time in seconds.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetEnabled(System.Boolean)">
+            <summary>
+            Set whether the time slice is enabled.
+            </summary>
+            <param name="enabled">The enabled flag.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.IsEnabled">
+            <summary>
+            Whether the time slice is enabled.
+            </summary>
+            <returns>Return <c>True</c> if the time slice is enabled, otherwise <c>False</c>.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetPosition(AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the position in this time slice. Pass <c>null</c> to unset.
+            </summary>
+            <param name="position">The position to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetPosition(System.Single,System.Single,System.Single)">
+            <summary>
+            Set the position in this time slice.
+            </summary>
+            <param name="x">The x component of the position.</param>
+            <param name="y">The y component of the position.</param>
+            <param name="z">The z component of the position.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetPosition(AweSDK.Core.Values.Vector3,AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the position change in the time slice.
+            </summary>
+            <param name="startPosition">The start position.</param>
+            <param name="endPosition">The end position.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="startPosition"/> or <paramref name="endPosition"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetPosition(AweSDK.Core.Values.Vector3,AweSDK.Core.Values.Vector3,AweSDK.Scene.Easing)">
+            <summary>
+            Set the position change with easing in the time slice.
+            </summary>
+            <param name="startPosition">The start position.</param>
+            <param name="endPosition">The end position.</param>
+            <param name="easing">The easing.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="startPosition"/> or <paramref name="endPosition"/> or <paramref name="easing"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetPosition(AweSDK.Scene.TimeSlice.ValuePosition)">
+            <summary>
+            Get the position value set to the time slice. 
+            Specify the <see cref="T:AweSDK.Scene.TimeSlice.ValuePosition"/> to get the corresponding value.
+            </summary>
+            <param name="valuePosition">The value position to get.</param>
+            <returns>The position value. Return <c>null</c> if the position is not set.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetRotation(AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the rotation in this time slice. Pass <c>null</c> to unset.
+            The rotation value is Euler angle in degree.
+            </summary>
+            <param name="rotation">The position to set.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetRotation(System.Single,System.Single,System.Single)">
+            <summary>
+            Set the rotation in this time slice.
+            All values are Euler angle in degree.
+            </summary>
+            <param name="pitch">The pitch value.</param>
+            <param name="yaw">The yaw value.</param>
+            <param name="roll">The roll value.</param>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetRotation(AweSDK.Core.Values.Vector3,AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the rotation change in the time slice.
+            </summary>
+            <param name="startRotation">The start rotation.</param>
+            <param name="endRotation">The end rotation.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="startRotation"/> or <paramref name="endRotation"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.SetRotation(AweSDK.Core.Values.Vector3,AweSDK.Core.Values.Vector3,AweSDK.Scene.Easing)">
+            <summary>
+            Set the rotation change with easing in the time slice.
+            </summary>
+            <param name="startRotation">The start rotation.</param>
+            <param name="endRotation">The end rotation.</param>
+            <param name="easing">The easing.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="startRotation"/> or <paramref name="endRotation"/> or <paramref name="easing"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.TimeSlice.GetRotation(AweSDK.Scene.TimeSlice.ValuePosition)">
+            <summary>
+            Get the rotation value set to the time slice. 
+            Specify the <see cref="T:AweSDK.Scene.TimeSlice.ValuePosition"/> to get the corresponding value.
+            </summary>
+            <param name="valuePosition">The value position to get.</param>
+            <returns>The rotation value. Return <c>null</c> if the rotation is not set.</returns>
+        </member>
+        <member name="T:AweSDK.Scene.TimeSlice.ValuePosition">
+            <summary>
+            An enumeration to indicate the value position.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.TimeSlice.ValuePosition.Start">
+            <summary>
+            The start value.
+            </summary>
+        </member>
+        <member name="F:AweSDK.Scene.TimeSlice.ValuePosition.End">
+            <summary>
+            The end value.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Scene.Element">
+            <summary>
+            An abstract base class for scene elements.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Element.#ctor(AweSDK.Core.Context)">
+            <summary>
+            Construct an Element instance with a context.
+            </summary>
+            <param name="context">The context to use.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Element.Destroy">
+            <summary>
+            Destroy this element in order to set it to the destroyed state. 
+            The element will be removed from the parent, 
+            and all its children will be destroyed too.
+            In addition, all the time slices of this element will also be destroyed.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Element.AddChild(AweSDK.Scene.Element)">
+            <summary>
+            Add a child element.
+            </summary>
+            <param name="element">The child element to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="element"/> is null.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            The child element is itself, or the child element is destroyed.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Element.RemoveChild(AweSDK.Scene.Element)">
+            <summary>
+            Remove the child element.
+            </summary>
+            <param name="element">The child element to remove.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="element"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Element.Remove">
+            <summary>
+            Remove from the parent.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Element.RemoveAllChildren">
+            <summary>
+            Remove all child elements.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Element.GetParent">
+            <summary>
+            Get the parent.
+            </summary>
+            <returns>The parent.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Element.GetPosition">
+            <summary>
+            Get the position value.
+            </summary>
+            <returns>The position value.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Element.SetPosition(System.Single,System.Single,System.Single)">
+            <summary>
+            Set the position value to (x, y, z).
+            </summary>
+            <param name="x">The x component of the position.</param>
+            <param name="y">The y component of the position.</param>
+            <param name="z">The z component of the position.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Element.SetPosition(AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the position value.
+            </summary>
+            <param name="position">The position value to set.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="position"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Element.GetRotation">
+            <summary>
+            Get the rotation value. The value is an Euler angle <c>(pitch, yaw, roll)</c> in degree.
+            </summary>
+            <returns>The rotation value.</returns>
+        </member>
+        <member name="M:AweSDK.Scene.Element.SetRotation(System.Single,System.Single,System.Single)">
+            <summary>
+            Set the rotation value to an Euler angle in degree.
+            </summary>
+            <param name="pitch">The pitch component.</param>
+            <param name="yaw">The yaw component.</param>
+            <param name="roll">The roll component.</param>
+        </member>
+        <member name="M:AweSDK.Scene.Element.SetRotation(AweSDK.Core.Values.Vector3)">
+            <summary>
+            Set the rotation value. The value is an Euler angle <c>(pitch, yaw, roll)</c> in degree.
+            </summary>
+            <param name="rotation">The rotation value to set.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="rotation"/> is null.
+            </exception>
+        </member>
+        <member name="M:AweSDK.Scene.Element.SetVisible(System.Boolean)">
+            <summary>
+            Set whether the element is visible or not.
+            </summary>
+            <param name="visible">The visible flag.</param>
+        </member>
+        <member name="T:AweSDK.Scene.Transaction">
+            <summary>
+            A transaction is a logical unit of work that combines one or more <see cref="T:AweSDK.Scene.DataObject"/> operations. 
+            These operations are treated as one execution unit, 
+            and subsequent operations are executed only after the current transaction has been successfully applied. 
+            The moment the callback (if any is provided as an argument to the <see cref="M:AweSDK.Scene.Transaction.Commit(System.Action)"/> method) is executed 
+            is the moment the transaction is done.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Transaction.Start">
+            <summary>
+            Start a transaction.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Scene.Transaction.Commit(System.Action)">
+            <summary>
+            Commit a transaction. 
+            If a callback is set, the callback method will be executed after the transaction ends.
+            </summary>
+            <param name="callback">The callback method.</param>
+            <exception cref="T:System.InvalidOperationException">
+            No transaction to commit.
+            </exception>
+        </member>
+        <member name="T:AweSDK.ErrorReporter">
+            <summary>
+            An error reporter collects error messages.
+            </summary>
+        </member>
+        <member name="T:AweSDK.Authorization.LicenseManager">
+            <summary>
+            A class for managing license.
+            </summary>
+        </member>
+        <member name="P:AweSDK.Authorization.LicenseManager.AppKey">
+            <summary>
+            Set or get app key.
+            </summary>
+        </member>
+        <member name="P:AweSDK.Authorization.LicenseManager.AppSecret">
+            <summary>
+            Set or get app secret.
+            </summary>
+        </member>
+        <member name="M:AweSDK.Authorization.LicenseManager.GenAuthString">
+            <summary>
+            Generate the code needed for authentication.
+            </summary>
+            <returns>The authorization code.</returns>
+        </member>
+        <member name="M:AweSDK.Authorization.LicenseManager.GenAuthStringAsync(System.Single)">
+            <summary>
+            Request the code needed for authentication from the backend.
+            </summary>
+            <param name="timeoutInSec">The request timeout in seconds.</param>
+            <returns>The authorization code.</returns>
+        </member>
+    </members>
+</doc>
