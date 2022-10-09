@@ -162,11 +162,11 @@ namespace AweSDKDemo
             human.SetTarget("23202", 0.4769f);
             human.SetTarget("23503", -0.8489f);
 
-            human.WearHair("cloth/nv_tf_128");
-            human.WearOutfits("cloth/nv_up_06", "cloth/nv_tz_117_down");
-            human.WearShoes("cloth/nv_shoes_98");
+            human.WearHair("602");
+            human.WearOutfits("11670", "11667");
+            human.WearShoes("1501");
 
-            human.PlayAnimation("anim/HP_Share");
+            human.PlayAnimation("34025");
 
             Scene scene = SceneManager.GetInstance(context).GetCurrentScene();
             scene.AddElement(human);
