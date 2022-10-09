@@ -185,7 +185,7 @@ private void SetupLicense(Context context)
 }
 ```
 
-**Note: Developers need to replace the `[YourAppKey]` and `[YourAppSecret]` in the sample code with the `AppKey` and `AppSecret` values that have been applied**. 
+**Note: Developers need to replace the `{YourAppKey}` and `{YourAppSecret}` in the sample code with the `AppKey` and `AppSecret` values that have been applied**. 
 
 ## Setup resource paths
 The SDK relies on resources such as animations, dresses, etc., so we need to setup cache paths and resource paths so that the SDK can load resources and control caching.
