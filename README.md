@@ -9,7 +9,7 @@ Import the following three dynamic libraries into the project
 
 Extract the renderer program `AweRenderer` to a custom directory, for example, `E:\Workspace\Demo\WPF\AweRenderer`. We will start the `AweRenderer.exe` process later with code to render 3D content.
 
-The dynamic libraries and renderer can be downloaded from here: [Download](https://github.com/MetaMakerDeveloper/AweSDK-Windows/releases)
+The dynamic libraries and renderer can be downloaded from here: [Download](https://github.com/MetaMakerDeveloper/AweSDK-Windows/releases).
 
 ## Environment Setup
 Create a `Setup` method. The method will create a `Context` object, initialize the SDK environment, and apply the license information. 
